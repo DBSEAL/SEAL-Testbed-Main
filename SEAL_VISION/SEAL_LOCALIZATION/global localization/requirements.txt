@@ -1,0 +1,4 @@
+OpenGL
+gpsd
+gpsdclient
+zed_SDK
