@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  influxdb:
+    image: influxdb:1.8
+    container_name: influxdb
+    network_mode: "host"
+    restart: unless-stopped
+    volumes:
+      - influxdb-storage:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=telegraf
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    network_mode: "host"
+    restart: unless-stopped
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    depends_on:
+      - influxdb
+
+volumes:
+  influxdb-storage:
+  grafana-storage:
